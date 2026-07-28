@@ -45,6 +45,6 @@
             @endforeach
         </section>
 
-        <div class="pagination-wrap">{{ $teachers->links('vendor.pagination.guruvandan') }}</div>
+        <div class="pagination-wrap">{{ $teachers->links('pagination::guruvandan') }}</div>
     </main>
 @endsection
