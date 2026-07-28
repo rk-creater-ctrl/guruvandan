@@ -3,6 +3,9 @@
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.4"
+        },
+        "api/deploy-check.php": {
+            "runtime": "vercel-php@0.7.4"
         }
     },
     "outputDirectory": "public",
@@ -18,6 +21,10 @@
         {
             "src": "/robots.txt",
             "dest": "/public/robots.txt"
+        },
+        {
+            "src": "/deploy-check",
+            "dest": "/api/deploy-check.php"
         },
         {
             "src": "/(.*)",
