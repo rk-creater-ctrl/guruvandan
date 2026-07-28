@@ -6,6 +6,9 @@
         },
         "api/deploy-check.php": {
             "runtime": "vercel-php@0.7.4"
+        },
+        "api/laravel-check.php": {
+            "runtime": "vercel-php@0.7.4"
         }
     },
     "outputDirectory": "public",
@@ -25,6 +28,10 @@
         {
             "src": "/deploy-check",
             "dest": "/api/deploy-check.php"
+        },
+        {
+            "src": "/laravel-check",
+            "dest": "/api/laravel-check.php"
         },
         {
             "src": "/(.*)",
