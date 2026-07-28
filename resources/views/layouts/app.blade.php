@@ -8,7 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    @if (env('VERCEL') && file_exists(public_path('assets/css/styles.css')))
+        <style>{!! file_get_contents(public_path('assets/css/styles.css')) !!}</style>
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    @endif
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -84,6 +88,10 @@
             csrfToken: @json(csrf_token()),
         };
     </script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    @if (env('VERCEL') && file_exists(public_path('assets/js/app.js')))
+        <script>{!! file_get_contents(public_path('assets/js/app.js')) !!}</script>
+    @else
+        <script src="{{ asset('assets/js/app.js') }}"></script>
+    @endif
 </body>
 </html>
