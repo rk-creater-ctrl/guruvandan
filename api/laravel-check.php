@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\DB;
+
 header('Content-Type: application/json');
 
 foreach ([
@@ -44,14 +47,14 @@ try {
     $app = require __DIR__.'/../bootstrap/app.php';
 
     $result['step'] = 'console_bootstrap';
-    $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+    $app->make(Kernel::class)->bootstrap();
 
     $result['step'] = 'database_query';
     $result['database'] = [
         'connection' => config('database.default'),
-        'users' => Illuminate\Support\Facades\DB::table('users')->count(),
-        'teachers' => Illuminate\Support\Facades\DB::table('teachers')->count(),
-        'settings' => Illuminate\Support\Facades\DB::table('settings')->count(),
+        'users' => DB::table('users')->count(),
+        'teachers' => DB::table('teachers')->count(),
+        'settings' => DB::table('settings')->count(),
     ];
 
     $result['step'] = 'view_render';
