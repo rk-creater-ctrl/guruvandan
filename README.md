@@ -140,6 +140,8 @@ DB_SSLMODE=require
 SESSION_DRIVER=database
 CACHE_STORE=database
 QUEUE_CONNECTION=sync
+LOG_CHANNEL=stderr
+VIEW_COMPILED_PATH=/tmp/guruvandan/views
 ```
 
 Live upload storage example:
