@@ -1,0 +1,16 @@
+.env
+.env.*
+.git
+.psysh
+bootstrap/bootstrap
+database/*.sqlite*
+node_modules
+prototype-backup
+public/storage
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+storage/logs/*
+storage/storage
+vendor
