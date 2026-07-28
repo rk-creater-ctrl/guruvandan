@@ -14,24 +14,15 @@
     "outputDirectory": "public",
     "routes": [
         {
-            "src": "/assets/(.*)",
-            "dest": "/public/assets/$1"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/public/robots.txt"
-        },
-        {
             "src": "/deploy-check",
             "dest": "/api/deploy-check.php"
         },
         {
             "src": "/laravel-check",
             "dest": "/api/laravel-check.php"
+        },
+        {
+            "handle": "filesystem"
         },
         {
             "src": "/(.*)",
