@@ -77,8 +77,17 @@
         @include('partials.flash')
         <div id="main-content">@yield('content')</div>
 
+        <a class="creator-badge" href="{{ route('home') }}" aria-label="Made by Ritik">
+            <span class="creator-badge__spark">R</span>
+            <span>
+                <small>Made by</small>
+                <strong>Ritik</strong>
+            </span>
+        </a>
+
         <footer class="site-footer">
             <p>{{ $platformSettings['platform_name'] }} &bull; A Digital Guru Dakshina Platform for Guru Purnima.</p>
+            <p class="footer-credit">Powered by <strong>Ritik</strong></p>
             <div class="footer-links"><a href="{{ route('teachers.index') }}">Teachers</a><a href="{{ route('wall') }}">Memory Wall</a><a href="{{ route('event') }}">Event</a></div>
         </footer>
     </div>
