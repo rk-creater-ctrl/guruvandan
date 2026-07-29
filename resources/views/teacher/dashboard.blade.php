@@ -4,6 +4,13 @@
     $ritikTribute = $showContent
         ? $tributes->first(fn ($tribute) => $tribute->student?->name === 'Ritik Kushwaha')
         : null;
+    $ritikMessage = $ritikTribute
+        ? str($ritikTribute->message)
+            ->replace('With respect, Ritik Kushwaha.', '')
+            ->replace('With respect, Ritik.', '')
+            ->trim()
+            ->toString()
+        : null;
 @endphp
 <main class="content-page">
     <div class="dashboard-hero"><div><p class="eyebrow">Teacher Dashboard</p><h1>{{ $teacher->user->name }}'s tribute space</h1><p>{{ $teacher->designation }}@if($teacher->location) &bull; {{ $teacher->location }}@endif</p><a class="button ghost" href="{{ route('teacher.profile.edit') }}">Edit my profile</a></div><div class="reveal-chip {{ $showContent ? 'live' : '' }}"><span>{{ $showContent ? 'Tributes revealed' : 'Surprise mode active' }}</span><strong>{{ $showContent ? $tributes->count().' approved tributes' : 'Your wall remains private until reveal.' }}</strong></div></div>
@@ -12,11 +19,26 @@
             <div class="teacher-message-dialog__inner">
                 <p class="eyebrow">A Guru Purnima Thought</p>
                 <h2>{{ $ritikTribute->title }}</h2>
-                <blockquote>{{ $ritikTribute->message }}</blockquote>
-                <p class="teacher-message-dialog__sender">From {{ $ritikTribute->student->name }}</p>
+                <blockquote>{{ $ritikMessage }}</blockquote>
+                <p class="teacher-message-dialog__sender">By Ritik</p>
                 <div class="form-actions">
                     <button class="button primary" type="button" data-close-dialog>Read my tributes</button>
                 </div>
+            </div>
+        </dialog>
+    @endif
+    @if(auth()->user()->must_change_password)
+        <dialog class="teacher-message-dialog password-change-dialog" data-password-change-popup>
+            <div class="teacher-message-dialog__inner">
+                <p class="eyebrow">Account Security</p>
+                <h2>Please set your private password.</h2>
+                <p>Your tribute message has been shown first. Now choose a password only you know.</p>
+                <form class="tribute-form compact-form" method="POST" action="{{ route('password.change.save') }}">
+                    @csrf
+                    <label>New password<input type="password" name="password" required autocomplete="new-password"></label>
+                    <label>Confirm password<input type="password" name="password_confirmation" required autocomplete="new-password"></label>
+                    <button class="button primary" type="submit">Update password</button>
+                </form>
             </div>
         </dialog>
     @endif

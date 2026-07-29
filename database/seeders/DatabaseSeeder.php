@@ -119,7 +119,12 @@ class DatabaseSeeder extends Seeder
                     'joining_year' => 2008 + ($index % 14),
                     'location' => $teacherData['location'] ?? null,
                     'bio' => $name.' is honoured on Guru Purnima for shaping students with care, discipline, and steady encouragement. This digital tribute page preserves messages, memories, poems, and creative wishes from students.',
-                    'quote' => 'A teacher lights the path long after the class is over.',
+                    'quote' => [
+                        'A guru does not just teach the lesson; they awaken the courage to learn.',
+                        'Some teachers become memories because their words keep helping us quietly.',
+                        'The best classroom gift is confidence, and a true guru gives it patiently.',
+                        'A teacher plants discipline with care and lets confidence bloom with time.',
+                    ][$index % 4],
                     'is_active' => true,
                     'is_public' => true,
                     'archived_at' => null,
@@ -191,50 +196,54 @@ class DatabaseSeeder extends Seeder
         }
 
         $ritikMessages = [
-            'Your words are like a diya in a quiet room; they make every difficult lesson feel possible. With respect, Ritik Kushwaha.',
-            "A good teacher does not only finish the chapter, they open a window in the student's mind. Thank you for opening many for us. With respect, Ritik Kushwaha.",
-            'In your class, discipline never felt heavy because it always came with care. That balance is your true blessing to us. With respect, Ritik Kushwaha.',
-            'You taught us that marks matter, but courage, honesty, and effort matter even more. That lesson will stay beyond school. With respect, Ritik Kushwaha.',
-            'Some teachers explain answers; you taught us how to search for them. That is the gift of a real guru. With respect, Ritik Kushwaha.',
-            'Your patience is the bridge between our doubts and our confidence. Thank you for walking that bridge with us every day. With respect, Ritik Kushwaha.',
-            'A classroom becomes memorable when a teacher fills it with hope. Your guidance made ordinary days feel meaningful. With respect, Ritik Kushwaha.',
-            'You planted confidence quietly, like seeds in soil, and today many students stand taller because of you. With respect, Ritik Kushwaha.',
-            'Your teaching has the warmth of encouragement and the strength of truth. That is why students remember your words. With respect, Ritik Kushwaha.',
-            "A guru's blessing is not always spoken; sometimes it is hidden in correction, practice, and belief. Thank you for all three. With respect, Ritik Kushwaha.",
-            'You made learning feel less like pressure and more like a journey where every step had purpose. With respect, Ritik Kushwaha.',
-            'Whenever we felt unsure, your faith in us became our borrowed strength until we found our own. With respect, Ritik Kushwaha.',
-            'Your lessons are not limited to notebooks; they have become small lights we carry into life. With respect, Ritik Kushwaha.',
-            "The best teachers leave echoes of kindness in a student's memory. Your kindness will always be one of those echoes. With respect, Ritik Kushwaha.",
-            'You turned mistakes into practice and practice into progress. That simple magic changed how we look at learning. With respect, Ritik Kushwaha.',
-            "A teacher's smile can make a student try one more time. Thank you for giving us that courage again and again. With respect, Ritik Kushwaha.",
-            'You showed us that knowledge becomes powerful only when it is joined with humility and effort. With respect, Ritik Kushwaha.',
-            'In every explanation, there was patience; in every correction, there was care; in every class, there was purpose. With respect, Ritik Kushwaha.',
-            'You are one of those teachers whose guidance becomes a quiet voice in the mind during difficult moments. With respect, Ritik Kushwaha.',
-            'Thank you for making students feel seen, heard, and capable. That feeling is a gift greater than any prize. With respect, Ritik Kushwaha.',
-            'Leadership becomes inspiring when it is rooted in service. Your example teaches us to aim high and stay grounded. With respect, Ritik Kushwaha.',
-            "A principal's guidance shapes not only classrooms but the spirit of the whole school. Thank you for leading with vision. With respect, Ritik Kushwaha.",
-            'Your presence brings calm, clarity, and confidence to the learning journey. Thank you for being a memorable guru. With respect, Ritik Kushwaha.',
-            'Every school needs teachers who turn knowledge into inspiration. Your guidance is one of the reasons students believe they can grow. With respect, Ritik Kushwaha.',
+            ['type' => 'poem', 'title' => 'A diya of guidance', 'message' => 'Your words are like a diya in a quiet room; they make every difficult lesson feel possible.'],
+            ['type' => 'thank_you_message', 'title' => 'A window in the mind', 'message' => "A good teacher does not only finish the chapter; they open a window in the student's mind."],
+            ['type' => 'letter', 'title' => 'Discipline with care', 'message' => 'In your class, discipline never felt heavy because it always came with care. That balance is your true blessing to us.'],
+            ['type' => 'thank_you_message', 'title' => 'Lessons beyond marks', 'message' => 'You taught us that marks matter, but courage, honesty, and effort matter even more. That lesson will stay beyond school.'],
+            ['type' => 'poem', 'title' => 'The gift of searching', 'message' => 'Some teachers explain answers; you taught us how to search for them. That is the gift of a real guru.'],
+            ['type' => 'thank_you_message', 'title' => 'Bridge of patience', 'message' => 'Your patience is the bridge between our doubts and our confidence. Thank you for walking that bridge with us.'],
+            ['type' => 'poem', 'title' => 'A classroom filled with hope', 'message' => 'A classroom becomes memorable when a teacher fills it with hope. Your guidance made ordinary days meaningful.'],
+            ['type' => 'thank_you_message', 'title' => 'Seeds of confidence', 'message' => 'You planted confidence quietly, like seeds in soil, and today many students stand taller because of you.'],
+            ['type' => 'letter', 'title' => 'Warmth and truth', 'message' => 'Your teaching has the warmth of encouragement and the strength of truth. That is why students remember your words.'],
+            ['type' => 'poem', 'title' => 'Hidden blessings', 'message' => "A guru's blessing is sometimes hidden in correction, practice, and belief. Thank you for all three."],
+            ['type' => 'thank_you_message', 'title' => 'A journey with purpose', 'message' => 'You made learning feel less like pressure and more like a journey where every step had purpose.'],
+            ['type' => 'letter', 'title' => 'Borrowed strength', 'message' => 'Whenever we felt unsure, your faith in us became our borrowed strength until we found our own.'],
+            ['type' => 'poem', 'title' => 'Small lights for life', 'message' => 'Your lessons are not limited to notebooks; they have become small lights we carry into life.'],
+            ['type' => 'thank_you_message', 'title' => 'Echoes of kindness', 'message' => "The best teachers leave echoes of kindness in a student's memory. Your kindness will always be one of those echoes."],
+            ['type' => 'poem', 'title' => 'Mistakes into progress', 'message' => 'You turned mistakes into practice and practice into progress. That simple magic changed how we look at learning.'],
+            ['type' => 'thank_you_message', 'title' => 'One more try', 'message' => "A teacher's smile can make a student try one more time. Thank you for giving us that courage again and again."],
+            ['type' => 'letter', 'title' => 'Knowledge with humility', 'message' => 'You showed us that knowledge becomes powerful only when it is joined with humility and effort.'],
+            ['type' => 'poem', 'title' => 'Patience in every explanation', 'message' => 'In every explanation, there was patience; in every correction, there was care; in every class, there was purpose.'],
+            ['type' => 'thank_you_message', 'title' => 'A quiet voice in the mind', 'message' => 'Your guidance becomes a quiet voice in the mind during difficult moments.'],
+            ['type' => 'letter', 'title' => 'Seen, heard, capable', 'message' => 'Thank you for making students feel seen, heard, and capable. That feeling is a gift greater than any prize.'],
+            ['type' => 'thank_you_message', 'title' => 'Leadership rooted in service', 'message' => 'Leadership becomes inspiring when it is rooted in service. Your example teaches us to aim high and stay grounded.'],
+            ['type' => 'letter', 'title' => 'Vision for the school', 'message' => "A principal's guidance shapes not only classrooms but the spirit of the whole school. Thank you for leading with vision."],
+            ['type' => 'poem', 'title' => 'Calm, clarity, confidence', 'message' => 'Your presence brings calm, clarity, and confidence to the learning journey. Thank you for being a memorable guru.'],
+            ['type' => 'thank_you_message', 'title' => 'Knowledge into inspiration', 'message' => 'Every school needs teachers who turn knowledge into inspiration. Your guidance is one reason students believe they can grow.'],
         ];
 
         foreach ($teacherDefinitions as $index => $teacher) {
-            Tribute::query()->updateOrCreate(
-                [
-                    'student_id' => $ritik->id,
-                    'teacher_id' => $teacher->id,
-                    'title' => 'Guru Purnima thought from Ritik',
-                ],
-                [
-                    'tribute_type' => 'poem',
-                    'message' => $ritikMessages[$index % count($ritikMessages)],
+            $ritikMessage = $ritikMessages[$index % count($ritikMessages)];
+            $tribute = Tribute::query()
+                ->where('student_id', $ritik->id)
+                ->where('teacher_id', $teacher->id)
+                ->whereIn('title', ['Guru Purnima thought from Ritik', $ritikMessage['title']])
+                ->first();
+
+            ($tribute ?: new Tribute([
+                'student_id' => $ritik->id,
+                'teacher_id' => $teacher->id,
+            ]))->fill([
+                    'tribute_type' => $ritikMessage['type'],
+                    'title' => $ritikMessage['title'],
+                    'message' => $ritikMessage['message'],
                     'language' => 'english',
                     'status' => 'approved',
                     'rejection_reason' => null,
                     'approved_by' => $superAdmin->id,
                     'approved_at' => now(),
                     'is_featured' => $index < 6,
-                ]
-            );
+                ])->save();
         }
 
         $event = Event::query()->updateOrCreate(

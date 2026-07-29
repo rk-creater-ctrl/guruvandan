@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $ritikTribute = $tributes->first(fn ($tribute) => $tribute->student?->name === 'Ritik Kushwaha');
+        $ritikMessage = $ritikTribute
+            ? str($ritikTribute->message)
+                ->replace('With respect, Ritik Kushwaha.', '')
+                ->replace('With respect, Ritik.', '')
+                ->trim()
+                ->toString()
+            : null;
+    @endphp
     <main class="content-page">
         <section class="teacher-hero" @if($teacher->cover_image_path) style="background-image:linear-gradient(90deg,rgba(53,36,22,.9),rgba(53,36,22,.4)),url('{{ asset('storage/'.$teacher->cover_image_path) }}')" @endif>
             <div class="teacher-hero-copy">
@@ -36,12 +46,13 @@
                     <article class="panel">
                         <h2>Teacher Profile</h2>
                         <p>{{ $teacher->bio }}</p>
-                        <div class="detail-grid">
-                            @if($teacher->qualification)<div><strong>Qualification</strong><span>{{ $teacher->qualification }}</span></div>@endif
-                            @if($teacher->years_experience)<div><strong>Experience</strong><span>{{ $teacher->years_experience }} years</span></div>@endif
-                            @if($teacher->joining_year)<div><strong>Joining Year</strong><span>{{ $teacher->joining_year }}</span></div>@endif
-                            @if($teacher->location)<div><strong>Floor / Location</strong><span>{{ $teacher->location }}</span></div>@endif
-                        </div>
+                        @if($teacher->quote)<blockquote class="profile-thought">{{ $teacher->quote }}</blockquote>@endif
+                    </article>
+                    <article class="panel tribute-thought-panel">
+                        <p class="eyebrow">{{ $ritikTribute ? $ritikTribute->tribute_type->label() : 'Guru Purnima Thought' }}</p>
+                        <h2>{{ $ritikTribute ? $ritikTribute->title : 'A note of gratitude' }}</h2>
+                        <p>{{ $ritikMessage ?: ($teacher->quote ?: 'A teacher lights the path long after the class is over.') }}</p>
+                        <small>By Ritik</small>
                     </article>
                     <article class="panel">
                         <h2>Appreciation Wall</h2>

@@ -20,13 +20,10 @@
             <div class="form-grid two">
                 <label>Display name<input name="name" value="{{ old('name', $teacher->user->name) }}" required></label>
                 <label>Phone<input name="phone" value="{{ old('phone', $teacher->user->phone) }}"></label>
-                <label>Qualification<input name="qualification" value="{{ old('qualification', $teacher->qualification) }}"></label>
-                <label>Years of experience<input type="number" min="0" max="80" name="years_experience" value="{{ old('years_experience', $teacher->years_experience) }}"></label>
-                <label>Joining year<input type="number" min="1950" max="{{ date('Y') + 1 }}" name="joining_year" value="{{ old('joining_year', $teacher->joining_year) }}"></label>
                 <label>Floor or location<input name="location" value="{{ old('location', $teacher->location) }}"></label>
             </div>
-            <label>Biography<textarea name="bio" rows="7">{{ old('bio', $teacher->bio) }}</textarea></label>
-            <label>Appreciation quote<textarea name="quote" rows="3">{{ old('quote', $teacher->quote) }}</textarea></label>
+            <label>Teacher profile note<textarea name="bio" rows="7">{{ old('bio', $teacher->bio) }}</textarea></label>
+            <label>Guru Purnima thought or poem<textarea name="quote" rows="4">{{ old('quote', $teacher->quote) }}</textarea></label>
             <div class="form-grid two">
                 <label>Replace profile picture<input type="file" name="photo" accept=".jpg,.jpeg,.png,.webp" data-file-input></label>
                 <label>Replace cover picture<input type="file" name="cover_image" accept=".jpg,.jpeg,.png,.webp"></label>

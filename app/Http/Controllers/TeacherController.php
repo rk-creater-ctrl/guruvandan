@@ -62,9 +62,6 @@ class TeacherController extends Controller
                 'phone' => $request->input('phone'),
             ]);
             $teacher->fill($request->safe()->only([
-                'qualification',
-                'years_experience',
-                'joining_year',
                 'location',
                 'bio',
                 'quote',

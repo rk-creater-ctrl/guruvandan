@@ -208,15 +208,12 @@ class PhaseTwoQaHardeningTest extends TestCase
 
         $this->actingAs($teacher->user)->put(route('teacher.profile.update'), [
             'name' => 'Public Mentor Name',
-            'qualification' => 'M.Ed.',
-            'years_experience' => 11,
-            'joining_year' => 2015,
             'location' => 'North Wing',
             'bio' => 'A refreshed public biography.',
             'quote' => 'Every learner matters.',
         ])->assertSessionHas('status');
 
-        $this->assertDatabaseHas('teachers', ['id' => $teacher->id, 'location' => 'North Wing', 'qualification' => 'M.Ed.']);
+        $this->assertDatabaseHas('teachers', ['id' => $teacher->id, 'location' => 'North Wing', 'qualification' => null]);
         $this->get(route('teachers.show', $teacher->fresh()))
             ->assertOk()
             ->assertSee('Public Mentor Name')

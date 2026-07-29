@@ -181,10 +181,27 @@ const setupDialogs = () => {
 
 const setupTeacherMessagePopup = () => {
     const dialog = document.querySelector("[data-teacher-message-popup]");
-    if (!dialog) return;
+    const passwordDialog = document.querySelector("[data-password-change-popup]");
+    const showPasswordDialog = () => {
+        if (!passwordDialog || passwordDialog.open) return;
+        window.setTimeout(() => {
+            if (typeof passwordDialog.showModal === "function") passwordDialog.showModal();
+            else passwordDialog.setAttribute("open", "");
+        }, 250);
+    };
+
+    if (!dialog) {
+        showPasswordDialog();
+        return;
+    }
 
     const storageKey = dialog.dataset.popupKey || "teacher-message-popup";
-    if (window.sessionStorage.getItem(storageKey)) return;
+    if (window.sessionStorage.getItem(storageKey)) {
+        showPasswordDialog();
+        return;
+    }
+
+    dialog.addEventListener("close", showPasswordDialog, { once: true });
 
     window.setTimeout(() => {
         if (typeof dialog.showModal === "function") dialog.showModal();

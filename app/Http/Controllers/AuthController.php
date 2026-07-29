@@ -74,7 +74,7 @@ class AuthController extends Controller
         $request->user()->update(['last_login_at' => now()]);
         $logs->log($request->user(), 'login');
 
-        if ($request->user()->must_change_password) {
+        if ($request->user()->must_change_password && ! $request->user()->isTeacher()) {
             return redirect()->route('password.change');
         }
 
