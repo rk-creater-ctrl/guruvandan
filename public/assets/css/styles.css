@@ -1688,30 +1688,36 @@ select {
     display: none;
     align-items: center;
     gap: 10px;
-    border: 1px solid rgba(217, 166, 46, 0.38);
+    border: 1px solid rgba(21, 24, 39, 0.2);
     border-radius: 999px;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 242, 216, 0.82));
-    color: var(--accent-deep);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 245, 223, 0.9));
+    color: #111111;
     padding: 10px 13px 10px 16px;
     font: inherit;
-    font-weight: 800;
-    box-shadow: 0 10px 24px rgba(103, 36, 124, 0.12);
+    font-weight: 900;
+    box-shadow: 0 10px 24px rgba(21, 24, 39, 0.14);
+}
+
+.nav-toggle span {
+    color: #111111;
+    letter-spacing: 0.02em;
 }
 
 .nav-toggle i,
 .nav-toggle i::before,
 .nav-toggle i::after {
     display: block;
-    width: 18px;
+    width: 22px;
     height: 2px;
     border-radius: 999px;
-    background: currentColor;
+    background: #111111;
     transition: transform 0.24s ease, opacity 0.24s ease;
 }
 
 .nav-toggle i {
     position: relative;
+    flex: 0 0 22px;
 }
 
 .nav-toggle i::before,
@@ -1722,11 +1728,11 @@ select {
 }
 
 .nav-toggle i::before {
-    transform: translateY(-6px);
+    transform: translateY(-7px);
 }
 
 .nav-toggle i::after {
-    transform: translateY(6px);
+    transform: translateY(7px);
 }
 
 .nav-toggle[aria-expanded="true"] i {
@@ -2404,6 +2410,7 @@ code {
     }
 
     .main-nav a {
+        color: #111111;
         padding: 12px 14px;
         transform: none;
     }
