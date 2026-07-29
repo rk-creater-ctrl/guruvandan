@@ -17,50 +17,56 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="page-shell">
+        @php
+            $navLinkClass = fn (string $pattern): string => request()->routeIs($pattern) ? 'is-active' : '';
+        @endphp
         <header class="site-header">
             <a class="brand" href="{{ route('home') }}">
                 <span class="brand-mark">GV</span>
                 <span><strong>{{ $platformSettings['platform_name'] }}</strong><small>{{ $platformSettings['tagline'] }}</small></span>
             </a>
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
+                <span>Menu</span>
+                <i aria-hidden="true"></i>
+            </button>
             <nav class="main-nav" id="main-navigation" aria-label="Primary navigation">
                 @guest
-                    <a href="{{ route('home') }}">Home</a>
-                    <a href="{{ route('teachers.index') }}">Teachers</a>
-                    <a href="{{ route('wall') }}">Memory Wall</a>
-                    <a href="{{ route('event') }}">Event</a>
-                    <a href="{{ route('student.login') }}">Student Login</a>
-                    <a href="{{ route('teacher.login') }}">Teacher Login</a>
-                    <a href="{{ route('admin.login') }}">Admin Login</a>
-                    <a href="{{ route('register') }}">Give Guru Dakshina</a>
+                    <a class="{{ $navLinkClass('home') }}" href="{{ route('home') }}">Home</a>
+                    <a class="{{ $navLinkClass('teachers.*') }}" href="{{ route('teachers.index') }}">Teachers</a>
+                    <a class="{{ $navLinkClass('wall') }}" href="{{ route('wall') }}">Memory Wall</a>
+                    <a class="{{ $navLinkClass('event') }}" href="{{ route('event') }}">Event</a>
+                    <a class="{{ $navLinkClass('student.login') }}" href="{{ route('student.login') }}">Student Login</a>
+                    <a class="{{ $navLinkClass('teacher.login') }}" href="{{ route('teacher.login') }}">Teacher Login</a>
+                    <a class="{{ $navLinkClass('admin.login') }}" href="{{ route('admin.login') }}">Admin Login</a>
+                    <a class="{{ $navLinkClass('register') }}" href="{{ route('register') }}">Give Guru Dakshina</a>
                 @else
                     @if (auth()->user()->isStudent())
-                        <a href="{{ route('student.dashboard') }}">Dashboard</a>
+                        <a class="{{ $navLinkClass('student.dashboard') }}" href="{{ route('student.dashboard') }}">Dashboard</a>
                         <a href="{{ route('student.dashboard') }}#give-tribute">Give Tribute</a>
                         <a href="{{ route('student.dashboard') }}#my-tributes">My Tributes</a>
                         <a href="{{ route('student.dashboard') }}#ai-assistant">AI Assistant</a>
-                        <a href="{{ route('teachers.index') }}">Teachers</a>
-                        <a href="{{ route('wall') }}">Memory Wall</a>
+                        <a class="{{ $navLinkClass('teachers.*') }}" href="{{ route('teachers.index') }}">Teachers</a>
+                        <a class="{{ $navLinkClass('wall') }}" href="{{ route('wall') }}">Memory Wall</a>
                     @elseif (auth()->user()->isTeacher())
-                        <a href="{{ route('teacher.dashboard') }}">Dashboard</a>
-                        <a href="{{ route('teacher.profile.edit') }}">Edit Profile</a>
+                        <a class="{{ $navLinkClass('teacher.dashboard') }}" href="{{ route('teacher.dashboard') }}">Dashboard</a>
+                        <a class="{{ $navLinkClass('teacher.profile.*') }}" href="{{ route('teacher.profile.edit') }}">Edit Profile</a>
                         @if (auth()->user()->teacherProfile)
-                            <a href="{{ route('teachers.show', auth()->user()->teacherProfile) }}">My Tribute Page</a>
+                            <a class="{{ $navLinkClass('teachers.show') }}" href="{{ route('teachers.show', auth()->user()->teacherProfile) }}">My Tribute Page</a>
                         @endif
-                        <a href="{{ route('teacher.certificate.download') }}">Certificate</a>
-                        <a href="{{ route('event') }}">Event</a>
+                        <a class="{{ $navLinkClass('teacher.certificate.*') }}" href="{{ route('teacher.certificate.download') }}">Certificate</a>
+                        <a class="{{ $navLinkClass('event') }}" href="{{ route('event') }}">Event</a>
                     @else
-                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                        <a href="{{ route('admin.tributes') }}">Tributes</a>
-                        <a href="{{ route('admin.teachers') }}">Teachers</a>
-                        <a href="{{ route('admin.students') }}">Students</a>
-                        <a href="{{ route('admin.event') }}">Event</a>
-                        <a href="{{ route('admin.certificates') }}">Certificates</a>
-                        <a href="{{ route('admin.activity-logs') }}">Activity Logs</a>
+                        <a class="{{ $navLinkClass('admin.dashboard') }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a class="{{ $navLinkClass('admin.tributes*') }}" href="{{ route('admin.tributes') }}">Tributes</a>
+                        <a class="{{ $navLinkClass('admin.teachers*') }}" href="{{ route('admin.teachers') }}">Teachers</a>
+                        <a class="{{ $navLinkClass('admin.students*') }}" href="{{ route('admin.students') }}">Students</a>
+                        <a class="{{ $navLinkClass('admin.event*') }}" href="{{ route('admin.event') }}">Event</a>
+                        <a class="{{ $navLinkClass('admin.certificates*') }}" href="{{ route('admin.certificates') }}">Certificates</a>
+                        <a class="{{ $navLinkClass('admin.activity-logs') }}" href="{{ route('admin.activity-logs') }}">Activity Logs</a>
                         @if (auth()->user()->isSuperAdmin())
-                            <a href="{{ route('super-admin.admins') }}">Admin Accounts</a>
-                            <a href="{{ route('admin.teachers') }}">Teacher Accounts</a>
-                            <a href="{{ route('super-admin.settings') }}">Settings</a>
+                            <a class="{{ $navLinkClass('super-admin.admins*') }}" href="{{ route('super-admin.admins') }}">Admin Accounts</a>
+                            <a class="{{ $navLinkClass('admin.teachers*') }}" href="{{ route('admin.teachers') }}">Teacher Accounts</a>
+                            <a class="{{ $navLinkClass('super-admin.settings') }}" href="{{ route('super-admin.settings') }}">Settings</a>
                         @endif
                     @endif
                 @endguest
